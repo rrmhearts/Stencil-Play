@@ -1,4 +1,5 @@
 import { Config } from '@stencil/core';
+import { sass } from '@stencil/sass';
 
 export const config: Config = {
   namespace: 'stencil-starter-project-name',
@@ -12,7 +13,14 @@ export const config: Config = {
     },
     {
       type: 'www',
-      serviceWorker: null // disable service workers
+      serviceWorker: {
+        globPatterns: [
+          '**/*.{js,css,json,html,ico,png,jpg,jpeg}'
+        ]
+      }
     }
+  ],
+  plugins: [
+    sass()
   ]
 };

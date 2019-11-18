@@ -1,5 +1,10 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h /*jsx*/, Event } from '@stencil/core';
 import { format } from '../../utils/utils';
+
+/**
+ * The "h" namespace is used to import JSX types for elements and attributes.
+ * It is imported in order to avoid conflicting global JSX issues.
+ */
 
 @Component({
   tag: 'my-component',
@@ -22,11 +27,32 @@ export class MyComponent {
    */
   @Prop() last: string;
 
+  componentDidLoad() {
+    console.log('Component successfully loaded')
+    // Do something
+   }
+   
   private getText(): string {
     return format(this.first, this.middle, this.last);
   }
 
   render() {
-    return <div>Hello, World! I'm {this.getText()}</div>;
+    const sampleComponent = document.querySelector('my-legend');
+    const test = sampleComponent.text;
+
+  return <div>Hello, World! I'm {this.getText()}. The prop is <b>{test}</b>.</div>;
   }
 }
+
+  /*
+  @Event() active: EventEmitter;
+  checkboxCompletedHandler(checkbox: Checkbox) {
+    this.active.emit(checkbox);
+  }
+*/
+/*
+@Listen('click', { capture: true })
+handleClick(ev) {
+ console.log('click');
+}
+*/
